@@ -1,6 +1,6 @@
-# Starter boiler plate Next.JS for new projects by Digital Potter
+# Mil Amores Taqueri website by Digital Potter
 
-We use this boiler plate at Digital Potter to start new projects, it saves us a lot of time so we can get to code ASAP having all important settings for a clean and tested code. Now we are sharing it with you, I hope you enjoy it and make sure you star this repo for future use. We promise we will keep updating it as libraries and dependencies evolve.
+Website created using Digital Potter boiler plate and development connecting to our proprietary CMS. Contact us if you want to find out more about TheDavid.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -16,10 +16,10 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone git@github.com:Digital-Potter/digital-potter-starter.git
+git clone git@github.com:Digital-Potter/mil-amores-frontend.git
 
 # Step 2: Navigate to the project directory.
-cd digital-potter-starter
+cd mil-amores-frontend
 
 # Step 3: Install the necessary dependencies.
 npm i
@@ -28,7 +28,7 @@ npm i
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
 
 The project contains the basic kit that comes from a first installation plus some tweaks we use at Digital Potter.
 
@@ -39,7 +39,7 @@ The project contains the basic kit that comes from a first installation plus som
 ## Important things to customize from the beginning.
 
 - Check `git remote -v`. If the remote still has our repo, remember to change it to yours.
-- Change the name and port (if needed) of the project in the `package.json`, For example `"dev": "next dev -p 3007"` if you want the project to run on port 3007,
+- Change the name and port (if needed) of the project in the `package.json`, For example `"dev": "next dev -p 3001"` if you want the project to run on port 3007,
 - Use your favorite fonts by modifying `FontSettings.ts` in the helpers function, make sure you make the changes in `global.css` of variable and colors too.
 - Folder customization for components and other utilities
 
