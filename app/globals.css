@@ -11,7 +11,7 @@
 	--secondary-font: 'Poppins', 'sans';
 }
 
-@theme inline {
+@theme {
 	--color-dp-bg: var(--dp-softer-ma-cream);
 	--color-dp-softer-ma-cream: var(--dp-softer-ma-cream);
 	--color-dp-highlighter-ma-green: var(--dp-highlighter-ma-green);
@@ -24,6 +24,7 @@
 	--font-secondary-font: var(--secondary-font);
 
 	--radius-dp-20: 1.25rem;
+	--spacing-375: 93.75rem;
 }
 
 body {
@@ -31,11 +32,15 @@ body {
 }
 
 section {
-	@apply mx-auto w-11/12 max-w-[1500px];
+	@apply mx-auto w-11/12 max-w-375;
+}
+
+.dp-container {
+	@apply mx-auto w-11/12 max-w-375;
 }
 
 p {
-	@apply font-secondary-font text-xl;
+	@apply font-secondary-font;
 }
 
 h1,
@@ -44,76 +49,5 @@ h3,
 h4,
 h5,
 h6 {
-	@apply text-dp-ma-red font-primary-font font-bold;
-}
-
-h1 {
-	font-size: 4.375rem;
-	line-height: 1.1em;
-}
-
-h2 {
-	font-size: 4rem;
-	line-height: 1.3em;
-}
-
-h3 {
-	font-size: 3.4375rem;
-	line-height: 1.2em;
-}
-
-h4 {
-	font-size: 2.75rem;
-	line-height: 1.3em;
-}
-
-h5 {
-	font-size: 2.375rem;
-	line-height: 1.3em;
-}
-
-h6 {
-	font-size: 2rem;
-	line-height: 1.3em;
-}
-
-@media screen and (max-width: 768px) {
-	h1 {
-		font-size: 3.5rem;
-	}
-
-	h2 {
-		font-size: 3.1rem;
-	}
-
-	h3 {
-		font-size: 2.75rem;
-	}
-
-	h4 {
-		font-size: 2.35rem;
-	}
-}
-
-@media screen and (max-width: 500px) {
-	body,
-	p {
-		font-size: 0.87rem;
-	}
-
-	h1 {
-		font-size: 2.5rem;
-	}
-
-	h2 {
-		font-size: 2.2rem;
-	}
-
-	h3 {
-		font-size: 2rem;
-	}
-
-	h4 {
-		font-size: 1.9rem;
-	}
+	@apply font-primary-font font-bold;
 }

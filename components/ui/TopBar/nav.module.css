@@ -14,7 +14,7 @@ CSS by Norman @ Digital Potter */
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-end;
-	width: 55px;
+	width: 44px;
 	height: 20px;
 	cursor: pointer;
 }
@@ -81,13 +81,12 @@ CSS by Norman @ Digital Potter */
 	z-index: 1000;
 	overflow-y: auto;
 	border-radius: 20px 0 0 20px;
-	background: rgba(255, 253, 238, 0.301);
+	background: rgba(255, 254, 247, 0.5);
 	backdrop-filter: blur(40px);
-	-webkit-backdrop-filter: blur(40px);
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	box-shadow:
 		0 10px 35px rgba(0, 0, 0, 0.1),
-		inset 0 1px 0 rgba(255, 255, 255, 0.5),
+		inset 0 1px 0 rgba(255, 255, 255, 0.7),
 		inset 0 -1px 0 rgba(255, 255, 255, 0.1),
 		inset 0 0 50px 5px rgba(0, 0, 0, 0.1);
 }

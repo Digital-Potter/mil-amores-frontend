@@ -16,9 +16,9 @@ const Indicator = (props: IndicatorProps) => {
 	return (
 		<div
 			className={twMerge(
-				'absolute top-0 right-0 bottom-0 left-0 -z-1 flex rounded-2xl',
+				'absolute top-0 right-0 bottom-0 left-0 z-0 flex rounded-2xl',
 				pathName === `/${itemPath}` || (isHome && pathName === '/')
-					? 'bg-dp-dark/10'
+					? 'bg-dp-highlighter-ma-green/10'
 					: '',
 			)}
 		/>
