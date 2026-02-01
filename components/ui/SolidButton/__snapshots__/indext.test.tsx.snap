@@ -2,7 +2,7 @@
 
 exports[`SolidButton matches snapshot 1`] = `
 <button
-  class="relative text-sm flex items-center bg-dp-ma-red text-dp-softer-ma-cream font-primary-font uppercase font-bold px-7 py-3.5 rounded-dp-20 border-2 border-white md:px-9 md:py-4 hover:text-dp-green hover:border-white hover:bg-dp-ma-red transition-all group shadow-2xl"
+  class="font-primary-font rounded-dp-20 hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-green hover:border-dp-green relative flex items-center border-2 px-4 py-3.5 text-xs font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-sm bg-dp-text-dp-softer-ma-cream text-dp-dark"
 >
   <span
     class="translate-x-2 text-center transition-all group-hover:-translate-x-1"
@@ -11,7 +11,7 @@ exports[`SolidButton matches snapshot 1`] = `
   </span>
    
   <svg
-    class="group-hover:fill-dp-green translate-x-0 fill-white opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100"
+    class="group-hover:fill-dp-text-dp-softer-ma-cream translate-x-0 fill-white opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100"
     height="1em"
     viewBox="0 0 448 512"
     width="1em"

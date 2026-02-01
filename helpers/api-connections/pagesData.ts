@@ -1,12 +1,41 @@
+export const getMenuPages = async () => {
+	try {
+		const res = await fetch(
+			`${process.env.NEXT_PUBLIC_CMS}/api/pages/pages-menu`,
+			{
+				cache: 'no-cache',
+				headers: { storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` },
+			},
+		);
+
+		const data = await res.json();
+		if (!res.ok) {
+			throw new Error('An error occurred while fetching the data');
+		}
+
+		return data;
+	} catch (error) {
+		return new Error('An error occurred while fetching the data', {
+			cause: error,
+		});
+	}
+};
+
 export const getAllPages = async () => {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_CMS}/api/pages`, {
-		cache: 'no-cache',
-		headers: { storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` },
-	});
+	try {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_CMS}/api/pages`, {
+			cache: 'no-cache',
+			headers: { storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` },
+		});
 
-	const data = await res.json();
+		const data = await res.json();
 
-	return data;
+		return data;
+	} catch (error) {
+		return new Error('An error occurred while fetching the data', {
+			cause: error,
+		});
+	}
 };
 
 export const getPageByLink = async (link: string) => {
