@@ -2,11 +2,11 @@
 
 exports[`SolidButton matches snapshot 1`] = `
 <button
-  class="font-primary-font rounded-dp-20 hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-highlighter-ma-green relative flex items-center border-2 px-4 py-3.5 text-xs font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-sm bg-dp-text-dp-softer-ma-cream text-dp-dark"
+  class="font-primary-font rounded-dp-20 hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-highlighter-ma-green relative flex items-center border-2 px-4 py-3.5 font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-sm bg-dp-text-dp-softer-ma-cream text-dp-dark"
   data-testid="solid-button"
 >
   <span
-    class="text-center transition-all -translate-x-1"
+    class="text-center transition-all translate-x-2 group-hover:-translate-x-1"
   >
     Click Me
   </span>
