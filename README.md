@@ -28,7 +28,7 @@ npm i
 npm run dev
 ```
 
-Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+Open [http://localhost:3003](http://localhost:3003) with your browser to see the result.
 
 The project contains the basic kit that comes from a first installation plus some tweaks we use at Digital Potter.
 
@@ -39,7 +39,7 @@ The project contains the basic kit that comes from a first installation plus som
 ## Important things to customize from the beginning.
 
 - Check `git remote -v`. If the remote still has our repo, remember to change it to yours.
-- Change the name and port (if needed) of the project in the `package.json`, For example `"dev": "next dev -p 3001"` if you want the project to run on port 3007,
+- Change the name and port (if needed) of the project in the `package.json`, For example `"dev": "next dev -p 3003"` if you want the project to run on port 3007,
 - Use your favorite fonts by modifying `FontSettings.ts` in the helpers function, make sure you make the changes in `global.css` of variable and colors too.
 - Folder customization for components and other utilities
 
