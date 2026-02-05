@@ -22,11 +22,3 @@ export interface PageHero {
 		tablet: string;
 	};
 }
-
-export interface allImages {
-	fullSize: string;
-	othersizes: {
-		tablet: string;
-		mobile: string;
-	};
-}

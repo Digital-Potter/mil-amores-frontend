@@ -2,7 +2,7 @@
 
 exports[`OutlinedButton matches snapshot 1`] = `
 <button
-  class="relative text-base lg:text-lg flex items-center bg-dp-softer-ma-cream hover:bg-dp-ma-orange text-dp-highlighter-ma-green font-primary-font uppercase font-bold px-4 py-3.5 rounded-4xl border-2 border-dp-dark md:px-9 md:py-4 hover:border-dp-ma-orange transition-all group shadow-2xl cursor-pointer"
+  class="relative text-base lg:text-lg flex items-center bg-dp-softer-ma-cream hover:bg-dp-ma-orange text-dp-highlighter-ma-green font-Croissant uppercase font-bold px-4 py-3.5 rounded-4xl border-2 border-dp-dark md:px-9 md:py-4 hover:border-dp-ma-orange transition-all group shadow-2xl cursor-pointer"
 >
   <span
     class="text-dp-highlighter-ma-green group-hover:text-dp-softer-ma-cream translate-x-2 transition-all group-hover:-translate-x-1"

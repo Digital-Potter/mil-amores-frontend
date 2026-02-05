@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@source '../components/**/*.{tsx,ts,jsx,js}';
+@source '../app/**/*.{tsx,ts,jsx,js}';
 
 :root {
 	--dp-softer-ma-cream: #fff1e2;
@@ -8,10 +10,10 @@
 	--dp-green: #00d85c;
 	--dp-light-gray: #efefef;
 	--primary-font: 'Croissant One', serif;
-	--secondary-font: 'Poppins', 'sans';
+	--secondary-font: 'Poppins', sans-serif;
 }
 
-@theme {
+@theme inline {
 	--color-dp-bg: var(--dp-softer-ma-cream);
 	--color-dp-softer-ma-cream: var(--dp-softer-ma-cream);
 	--color-dp-highlighter-ma-green: var(--dp-highlighter-ma-green);
@@ -20,34 +22,40 @@
 	--color-dp-ma-red: var(--dp-ma-red);
 	--color-dp-ma-orange: var(--dp-ma-orange);
 
-	--font-primary-font: var(--primary-font);
-	--font-secondary-font: var(--secondary-font);
+	--font-Croissant: var(--primary-font);
+	--font-Poppins: var(--secondary-font);
 
 	--radius-dp-20: 1.25rem;
+
+	--spacing-112: 28rem;
+	--spacing-150: 37.5rem;
 	--spacing-375: 93.75rem;
+	--spacing-425: 106.25rem;
 }
 
-body {
-	@apply text-dp-highlighter-ma-green font-secondary-font;
-}
+@layer base {
+	body {
+		@apply text-dp-highlighter-ma-green font-Poppins text-base lg:text-lg;
+	}
 
-section {
-	@apply mx-auto w-11/12 max-w-375;
+	section {
+		@apply w-full py-10 lg:py-20;
+	}
+
+	p {
+		@apply font-Poppins text-base lg:text-lg;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-Croissant font-bold;
+	}
 }
 
 .dp-container {
-	@apply mx-auto w-11/12 max-w-375;
-}
-
-p {
-	@apply font-secondary-font;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	@apply font-primary-font font-bold;
+	@apply mx-auto w-11/12 max-w-425;
 }

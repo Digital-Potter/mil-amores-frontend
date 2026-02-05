@@ -1,35 +1,65 @@
-import Image from 'next/image';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-import OutlinedButton from '@/components/ui/OutlinedButton';
-import SolidButton from '@/components/ui/SolidButton';
+import HomePageTemplate from '@/components/templates/HomePageTemplate';
+import { getPageByLink } from '@/helpers/api-connections/pagesData';
+import { truncateToLength } from '@/helpers/truncateText';
 
-export default function Home() {
-	return (
-		<div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
-			<main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
-				<h1 className="text-center">Ready for Digital Potter</h1>
-				<div className="flex w-full flex-col items-center gap-4 sm:items-center sm:justify-center md:flex-row">
-					<OutlinedButton label="Button One" href="/" />
-					<SolidButton label="Button Two" href="/" />
-				</div>
-			</main>
-			<footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://digitalpotter.io"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/globe.svg"
-						alt="Globe icon"
-						width={16}
-						height={16}
-					/>
-					Digital Potter, LLC →
-				</a>
-			</footer>
-		</div>
-	);
-}
+const DEFAULT_DESCRIPTION =
+	'Mil Amores Taqueria - Authentic Mexican Cuisine in Williamsburg, VA. Enjoy our delicious tacos, burritos, and more!';
+
+export const generateMetadata = async (): Promise<Metadata> => {
+	const pageData = await getPageByLink('homepage');
+
+	if (!pageData) {
+		return {
+			title: 'Mil Amores Taqueria',
+			description: DEFAULT_DESCRIPTION,
+		};
+	}
+
+	const description = pageData.content || DEFAULT_DESCRIPTION;
+	const shortContent = truncateToLength(description, 160);
+	const imageUrl = `https://thedavid.digitalpotter.io/${pageData.featuredimg}`;
+
+	return {
+		title: pageData.seotitle,
+		description: shortContent,
+		alternates: {
+			canonical: 'https://milamorestaqueriava.com',
+		},
+		openGraph: {
+			title: pageData.seotitle,
+			description: shortContent,
+			type: 'website',
+			url: 'https://milamorestaqueriava.com',
+			locale: 'en_US',
+			images: [
+				{
+					url: imageUrl,
+					width: 800,
+					height: 600,
+					alt: 'Grilled chicken mexican dish',
+				},
+			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: pageData.seotitle,
+			description: shortContent,
+			images: [imageUrl],
+		},
+	};
+};
+
+const Home = async () => {
+	const pageData = await getPageByLink('welcome-to-mil-amores-taqueria');
+
+	if (!pageData) {
+		notFound();
+	}
+
+	return <HomePageTemplate {...pageData} />;
+};
+
+export default Home;

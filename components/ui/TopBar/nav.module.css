@@ -46,7 +46,7 @@ CSS by Norman @ Digital Potter */
 .opener:hover .openerLineOne,
 .opener:hover .openerLineTwo,
 .opener:hover .openerLineThree {
-	background-color: var(--color-dp-ma--color-dp-ma-red);
+	background-color: var(--color-dp-ma-red);
 	width: 100%;
 	transition: all 0.2s ease-in;
 }

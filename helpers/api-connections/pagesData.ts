@@ -1,10 +1,15 @@
+import { PageProps } from '@/types/pages';
+
 export const getMenuPages = async () => {
 	try {
 		const res = await fetch(
 			`${process.env.NEXT_PUBLIC_CMS}/api/pages/pages-menu`,
 			{
-				cache: 'no-cache',
-				headers: { storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` },
+				next: { revalidate: 60 },
+				headers: {
+					storedId:
+						`${process.env.NEXT_PUBLIC_CLIENT_ID}` || 'PlitzTemplateUno',
+				},
 			},
 		);
 
@@ -24,8 +29,10 @@ export const getMenuPages = async () => {
 export const getAllPages = async () => {
 	try {
 		const res = await fetch(`${process.env.NEXT_PUBLIC_CMS}/api/pages`, {
-			cache: 'no-cache',
-			headers: { storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` },
+			next: { revalidate: 60 },
+			headers: {
+				storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` || 'PlitzTemplateUno',
+			},
 		});
 
 		const data = await res.json();
@@ -38,18 +45,22 @@ export const getAllPages = async () => {
 	}
 };
 
-export const getPageByLink = async (link: string) => {
+export const getPageByLink = async (
+	link: string,
+): Promise<PageProps | null> => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_CMS}/api/pages/${link}`, {
 		next: { revalidate: 60 },
-		headers: { storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` },
+		headers: {
+			storedId: `${process.env.NEXT_PUBLIC_CLIENT_ID}` || 'PlitzTemplateUno',
+		},
 	});
 
 	if (res.status === 404) {
-		return new Error('Page not found');
+		return null;
 	}
 
 	if (!res.ok) {
-		return new Error('An error occurred while fetching the data');
+		throw new Error('An error occurred while fetching the data');
 	}
 
 	const data = await res.json();

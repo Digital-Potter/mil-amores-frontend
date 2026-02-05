@@ -7,8 +7,6 @@ import { NavProps } from '@/types/pages';
 const Footer = async () => {
 	const menuData: NavProps[] = await getMenuPages();
 
-	console.log(menuData);
-
 	return (
 		<footer className="dp-container grid grid-cols-6 gap-9 py-14 lg:grid-cols-12 lg:py-16">
 			<div className="col-span-6 flex items-center justify-center gap-9 lg:col-span-3">
@@ -21,7 +19,7 @@ const Footer = async () => {
 							<li key={el._id}>
 								<Link
 									href={el.link}
-									className="font-primary-font hover:bg-dp-highlighter-ma-green/10 block h-full rounded-4xl bg-amber-50/0 px-4 py-3 text-base transition-all lg:text-xl"
+									className="font-Croissant hover:bg-dp-highlighter-ma-green/10 block h-full rounded-4xl bg-amber-50/0 px-4 py-3 text-base transition-all lg:text-xl"
 								>
 									{el.label}
 								</Link>
@@ -29,7 +27,7 @@ const Footer = async () => {
 						))}
 					</ul>
 				</nav>
-				<p className="mt-3 text-xs! lg:text-sm!">
+				<p className="mt-3 text-xs lg:text-sm">
 					Created and Powered by{' '}
 					<a
 						href="https://digitalpotter.io"
@@ -55,7 +53,9 @@ const Footer = async () => {
 					<br />
 					Friday:11am-10pm
 					<br />
-					Saturday: 12pm-12am | Sunday Closed
+					Saturday: 12pm-12am
+					<br />
+					Sunday Closed
 				</p>
 			</div>
 		</footer>

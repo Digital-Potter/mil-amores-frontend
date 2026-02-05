@@ -63,7 +63,7 @@ const MobileNav = ({ navItems }: MobileNavProps) => {
 								<Link
 									href={navItem.link}
 									onClick={handleClose}
-									className="font-primary-font w-full rounded-xl bg-transparent py-2 text-base font-bold uppercase transition-all duration-300 hover:bg-black/5 hover:text-black/80"
+									className="font-Croissant w-full rounded-xl bg-transparent py-2 text-base font-bold uppercase transition-all duration-300 hover:bg-black/5 hover:text-black/80"
 								>
 									{navItem.label}
 								</Link>

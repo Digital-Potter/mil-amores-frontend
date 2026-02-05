@@ -23,16 +23,16 @@ const TopBar = async () => {
 
 	return (
 		<header className="bg-dp-softer-ma-cream z-50">
-			<div className="dp-container flex h-36 flex-row items-center justify-between lg:h-52">
+			<div className="dp-container flex h-36 flex-row items-center justify-between xl:h-52">
 				<Link href="/">
 					<MilAmoresMainLogo
 						width={'100%'}
 						height={'100%'}
-						className="h-24 w-38 lg:h-42.5 lg:w-72"
+						className="h-24 w-38 xl:h-42.5 xl:w-72"
 					/>
 				</Link>
 				<div className="flex flex-row items-center">
-					<div className="mr-10 hidden flex-row items-center justify-between gap-2 lg:flex">
+					<div className="mr-10 hidden flex-row items-center justify-between gap-2 xl:flex">
 						<PhoneIcon width={45} height={45} className="fill-dp-ma-red" />
 						<a
 							href="tel:7578085269"
@@ -42,12 +42,12 @@ const TopBar = async () => {
 							<span className="text-2xl font-bold">(757) 808-5269</span>
 						</a>
 					</div>
-					<nav className="dp-box-design mr-7 hidden p-1 lg:block">
+					<nav className="dp-box-design mr-7 hidden p-1 xl:block">
 						<ul className="flex flex-row gap-1">
 							{menuItems.map((page: NavProps) => (
 								<li
 									key={page._id}
-									className="font-primary-font relative text-2xl font-semibold"
+									className="font-Croissant relative text-2xl font-semibold"
 								>
 									<Link
 										href={page.label === 'Home' ? '/' : page.link}
@@ -65,15 +65,15 @@ const TopBar = async () => {
 							))}
 						</ul>
 					</nav>
-					<div className="flex flex-row items-center gap-2 md:gap-4 lg:gap-8">
+					<div className="flex flex-row items-center gap-2 md:gap-4 xl:gap-8">
 						<SolidButton
 							href={featuredItem.link}
 							label={featuredItem.label}
-							classes="order-2 lg:order-1"
+							classes="order-2 xl:order-1"
 							isTopBar={true}
 							alwaysIcon={true}
 						/>
-						<div className="order-1 block lg:hidden">
+						<div className="order-1 block xl:hidden">
 							{menuData.length > 0 && <MobileNav navItems={menuData} />}
 						</div>
 					</div>

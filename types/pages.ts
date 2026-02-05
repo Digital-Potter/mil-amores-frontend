@@ -1,3 +1,12 @@
+// TS
+export interface PagesProps {
+	error?: string;
+	loading?: boolean;
+	msg: string;
+	page: PageProps;
+	pages: PageProps[];
+}
+
 export interface PageProps extends NavProps {
 	title: string;
 	subtitle: string;
@@ -19,7 +28,6 @@ export interface PageProps extends NavProps {
 export interface NavProps {
 	_id: string;
 	position: number;
-	subtitle?: string;
 	label: string;
 	isLive: boolean;
 	isMenu: boolean;

@@ -28,7 +28,7 @@ export default function RootLayout({
 			>
 				<TopBar />
 				<div
-					className="flex flex-col"
+					className="flex w-screen flex-col overflow-x-hidden"
 					style={{ minHeight: 'calc(100vh - 150px)' }}
 				>
 					{children}

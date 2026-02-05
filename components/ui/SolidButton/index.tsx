@@ -32,7 +32,7 @@ const SolidButton = (props: SolidButtonProps) => {
 			data-testid={'solid-link'}
 			href={href}
 			className={twJoin(
-				'font-primary-font hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-ma-red relative flex items-center rounded-4xl border-2 px-4 py-3.5 text-base font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-lg',
+				'font-Croissant hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-ma-red relative flex items-center rounded-4xl border-2 px-4 py-3.5 text-base font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-lg',
 				classes,
 				isTopBar && pathName === `/${href}`
 					? 'bg-dp-highlighter-ma-green text-white'
@@ -47,7 +47,7 @@ const SolidButton = (props: SolidButtonProps) => {
 			data-testid={'solid-button'}
 			onClick={onClick}
 			className={twMerge(
-				'font-primary-font rounded-dp-20 hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-highlighter-ma-green relative flex items-center border-2 px-4 py-3.5 font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-sm',
+				'font-Croissant rounded-dp-20 hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-highlighter-ma-green relative flex items-center border-2 px-4 py-3.5 font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-sm',
 				classes,
 				isTopBar && pathName === `/${href}`
 					? 'bg-dp-highlighter-ma-green text-white'
