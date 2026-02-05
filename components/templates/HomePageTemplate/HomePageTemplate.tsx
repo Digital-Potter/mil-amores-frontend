@@ -1,3 +1,6 @@
+import ImagesGrid from '@/components/ImagesGrid';
+import OurPromise from '@/components/OurPromise';
+import RedCta from '@/components/RedCta';
 import SpecialsCarousel from '@/components/SpecialsCarousel';
 import DecoratedImage from '@/components/ui/DecoratedImage';
 import Decorations from '@/components/vectors/Decorations';
@@ -5,7 +8,7 @@ import createImageAlt from '@/helpers/createImageAlt';
 import { PageProps } from '@/types/pages';
 
 const HomePageTemplate = (props: PageProps) => {
-	const { featuredimg, title, subtitle, content } = props;
+	const { featuredimg, title, subtitle, content, extraboxes } = props;
 
 	const featuredImageAlt = createImageAlt(featuredimg);
 
@@ -21,8 +24,8 @@ const HomePageTemplate = (props: PageProps) => {
 	};
 
 	return (
-		<main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
-			<section className="dp-container grid grid-cols-6 gap-8 py-12 xl:grid-cols-12 xl:py-20">
+		<main className="row-start-2 flex flex-col items-center sm:items-start">
+			<section className="dp-container mb-2 grid grid-cols-6 gap-8 py-12 lg:mb-10 xl:grid-cols-12 xl:py-20">
 				<div className="col-span-6 flex flex-col gap-2 pr-0 xl:pr-20">
 					<h1 className="mb-4 text-4xl font-bold text-balance xl:text-7xl">
 						{title}
@@ -50,7 +53,17 @@ const HomePageTemplate = (props: PageProps) => {
 				</div>
 			</section>
 
+			{/** Specials slider section */}
 			<SpecialsCarousel />
+
+			{/** Static Images with tag lines */}
+			<ImagesGrid boxes={extraboxes || []} />
+
+			{/** CTA */}
+			<RedCta />
+
+			{/** Our promise */}
+			<OurPromise />
 		</main>
 	);
 };

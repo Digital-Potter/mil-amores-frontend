@@ -27,10 +27,13 @@
 
 	--radius-dp-20: 1.25rem;
 
-	--spacing-112: 28rem;
-	--spacing-150: 37.5rem;
-	--spacing-375: 93.75rem;
-	--spacing-425: 106.25rem;
+	--spacing-112: 28rem; /* 448px */
+	--spacing-120: 30rem; /* 480px */
+	--spacing-137.5: 34.375rem; /* 550px */
+	--spacing-150: 37.5rem; /* 600px */
+	--spacing-150: 37.5rem; /* 600px */
+	--spacing-375: 93.75rem; /* 1500px */
+	--spacing-425: 106.25rem; /* 1700px */
 }
 
 @layer base {

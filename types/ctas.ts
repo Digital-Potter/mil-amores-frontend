@@ -1,22 +1,22 @@
-export interface Sliders {
+export interface Ctas {
 	error?: string;
 	loading?: boolean;
 	msg: string;
-	slider: SliderProps;
-	sliders: SliderProps[];
+	slider: CtaProps;
+	sliders: CtaProps[];
 }
 
-export interface SliderProps {
+export interface CtaProps {
 	isLive: boolean;
 	order: number;
 	title: string;
 	subtitle: string;
 	details: string;
 	featuredimg: string;
-	buttons: SliderCtas[];
+	buttons: CtaButtons[];
 }
 
-export interface SliderCtas {
+export interface CtaButtons {
 	label: string;
 	link: string;
 	position: number;

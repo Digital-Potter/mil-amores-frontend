@@ -83,7 +83,7 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 												height: 448,
 											}}
 											decorationConfig={imageDecorationConfig}
-											className="-mb-10 h-80 lg:-mt-32 lg:mb-0 xl:h-112"
+											className="top-10 -mb-10 h-80 lg:-mt-32 lg:mb-0 xl:-top-10 xl:h-112"
 										/>
 									)}
 								</div>
@@ -92,12 +92,24 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 										<h4 className="text-2xl text-balance lg:text-3xl">
 											{special.subtitle}
 										</h4>
+
 										<div
 											className={twMerge(
 												'prose text-dp-dark-ma-brown lg:prose-lg max-w-none text-base font-bold text-balance [&>p]:lg:text-2xl',
 											)}
 											dangerouslySetInnerHTML={{ __html: special.description }}
 										/>
+
+										{special.discountType === '%' && (
+											<span className="text-dp-ma-orange text-5xl font-bold">
+												{special.discount}% OFF
+											</span>
+										)}
+										{special.discountType === '$' && (
+											<span className="text-dp-ma-orange text-5xl font-bold">
+												Only ${special.discount}
+											</span>
+										)}
 									</div>
 									<span className="mt-4 text-xs lg:ml-10 lg:text-sm">
 										{special.disclaimer}
