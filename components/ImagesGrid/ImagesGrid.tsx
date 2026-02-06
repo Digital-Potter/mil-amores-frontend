@@ -19,7 +19,7 @@ const ImagesGrid = (props: ImagesGridProps) => {
 	const cardThree = boxes.filter((box) => box.eposition === 3)[0];
 
 	return (
-		<div className="dp-container py-7 lg:py-2">
+		<div className="dp-container py-20 xl:py-7">
 			<div className="grid grid-cols-6 items-center gap-9 lg:grid-cols-12">
 				<div className="col-span-6 h-96 lg:h-137.5">
 					<Link

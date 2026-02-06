@@ -29,9 +29,12 @@
 
 	--spacing-112: 28rem; /* 448px */
 	--spacing-120: 30rem; /* 480px */
+	--spacing-125: 31.25rem; /* 500px */
+	--spaceging-130: 32.5rem; /* 520px */
 	--spacing-137.5: 34.375rem; /* 550px */
 	--spacing-150: 37.5rem; /* 600px */
 	--spacing-150: 37.5rem; /* 600px */
+	--spacing-225: 56.25rem; /* 900px */
 	--spacing-375: 93.75rem; /* 1500px */
 	--spacing-425: 106.25rem; /* 1700px */
 }
@@ -49,6 +52,10 @@
 		@apply font-Poppins text-base lg:text-lg;
 	}
 
+	button {
+		@apply cursor-pointer;
+	}
+
 	h1,
 	h2,
 	h3,
@@ -56,6 +63,17 @@
 	h5,
 	h6 {
 		@apply font-Croissant font-bold;
+	}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 	}
 }
 

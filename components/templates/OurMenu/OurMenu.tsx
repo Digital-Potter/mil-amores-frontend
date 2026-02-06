@@ -1,12 +1,11 @@
 import ContentWithImage from '@/components/ContentWithImage';
-import LocationInfo from '@/components/LocationInfo';
-import OurPromise from '@/components/OurPromise';
-import RedCta from '@/components/RedCta';
+import OnlineMenu from '@/components/OnlineMenu';
+import SpecialsCarousel from '@/components/SpecialsCarousel';
 import { PageProps } from '@/types/pages';
 
 import InternalPagesHero from '../../InternalPagesHero';
 
-const AboutTemplate = (props: PageProps) => {
+const OurMenu = (props: PageProps) => {
 	const { featuredimg, title, subtitle, content } = props;
 
 	return (
@@ -14,23 +13,20 @@ const AboutTemplate = (props: PageProps) => {
 			<InternalPagesHero
 				title={title}
 				subtitle={subtitle}
-				anchorText="Location Info"
-				anchorLink="#location-info"
+				anchorText="Start Your Order"
+				anchorLink="#full-menu"
 			/>
 
 			{/** Page body content intro */}
 			<ContentWithImage content={content} featuredimg={featuredimg} />
 
-			{/** Location section */}
-			<LocationInfo />
+			{/** Full menu with tabs */}
+			<OnlineMenu />
 
-			{/** Our promise section */}
-			<OurPromise />
-
-			{/** Red BG CTA to menu */}
-			<RedCta />
+			{/** Specials slider for more */}
+			<SpecialsCarousel />
 		</main>
 	);
 };
 
-export default AboutTemplate;
+export default OurMenu;

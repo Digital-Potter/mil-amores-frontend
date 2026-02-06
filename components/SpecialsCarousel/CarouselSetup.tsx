@@ -32,7 +32,10 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 	}, [specials.length]);
 
 	return (
-		<section className={twMerge('bg-dp-softer-ma-cream mt-10 mb-10 pb-10')}>
+		<section
+			id="specials"
+			className={twMerge('bg-dp-softer-ma-cream mt-10 pb-10')}
+		>
 			<div className="dp-container grid grid-cols-6 lg:grid-cols-12">
 				{specials
 					.sort((a, b) => a.position - b.position)
