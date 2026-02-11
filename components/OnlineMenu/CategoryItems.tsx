@@ -229,7 +229,7 @@ const CategoryItems = ({ catId, currentCategory }: CategoryItemsProps) => {
 										<div className="bg-dp-highlighter-ma-green/20 block h-px flex-1" />
 										<p className="flex w-max items-center text-xl">
 											<span className="text-sm font-extralight">$</span>
-											{option.price}
+											{option.price.toFixed(2)}
 											<input
 												type="number"
 												id={itemKeys[`${item._id}-${option._id}`]}
