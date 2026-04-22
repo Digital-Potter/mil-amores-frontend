@@ -23,13 +23,15 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 		sizeClassesBr: '-right-5 xl:-right-8 -bottom-5 xl:-bottom-8 w-20 xl:w-40',
 	};
 
+	const liveSpecials = specials.filter((special) => special.isLive);
+
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentSlide((prevSlide) => (prevSlide + 1) % specials.length);
+			setCurrentSlide((prevSlide) => (prevSlide + 1) % liveSpecials.length);
 		}, 10000); // Change slide every 10 second
 
 		return () => clearInterval(interval);
-	}, [specials.length]);
+	}, [liveSpecials.length]);
 
 	return (
 		<section
@@ -37,9 +39,8 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 			className={twMerge('bg-dp-softer-ma-cream mt-10 pb-10')}
 		>
 			<div className="dp-container grid grid-cols-6 lg:grid-cols-12">
-				{specials
+				{liveSpecials
 					.sort((a, b) => a.position - b.position)
-					.filter((special) => special.isLive)
 					.map((special, index) => (
 						<div
 							key={special._id}
@@ -63,7 +64,7 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 										</h3>
 									</div>
 									<div className="z-20 flex flex-row items-center gap-3.5">
-										{specials.map((_, dotIndex) => (
+										{liveSpecials.map((_, dotIndex) => (
 											<button
 												key={dotIndex}
 												className={twMerge(
