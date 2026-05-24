@@ -128,7 +128,7 @@ const CategoryItems = ({ catId, currentCategory }: CategoryItemsProps) => {
 					<div className="max-h-64 w-1/2 max-w-137.5 lg:w-1/3">
 						{!currentCategory.featuredImage.fullSize.includes('placeholder') ? (
 							<Image
-								src={`${process.env.NEXT_PUBLIC_CMS}/${currentCategory.featuredImage.fullSize}`}
+								src={currentCategory.featuredImage.fullSize}
 								alt={currentCategory.categoryTitle}
 								width={500}
 								height={385}
@@ -172,7 +172,7 @@ const CategoryItems = ({ catId, currentCategory }: CategoryItemsProps) => {
 						<div className="relative min-h-48 w-full overflow-hidden rounded-xl md:w-1/4">
 							{!item.featuredImg?.fullSize.includes('placeholder') ? (
 								<Image
-									src={`${process.env.NEXT_PUBLIC_CMS}/${item.featuredImg?.fullSize}`}
+									src={item.featuredImg?.fullSize ?? ''}
 									alt={createImageAlt(item.featuredImg.fullSize)}
 									fill
 									sizes="(max-width: 768px) 100vw, 33vw"

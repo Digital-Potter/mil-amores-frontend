@@ -25,7 +25,7 @@ const LocationItem = (props: LocationItemProps) => {
 						</div>
 						<div className="absolute bottom-0 z-10 h-64 w-full -bg-linear-180 from-transparent to-black/80" />
 						<Image
-							src={`${process.env.NEXT_PUBLIC_CMS}/${location.featuredImg.fullSize}`}
+							src={location.featuredImg.fullSize}
 							alt={createImageAlt(location.featuredImg.fullSize)}
 							width={500}
 							height={520}

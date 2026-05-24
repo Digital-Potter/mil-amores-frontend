@@ -34,7 +34,7 @@ const SolidButton = (props: SolidButtonProps) => {
 			className={twJoin(
 				'font-Croissant hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-ma-red relative flex items-center rounded-4xl border-2 px-4 py-3.5 text-base font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-lg',
 				classes,
-				isTopBar && pathName === `/${href}`
+				isTopBar && pathName === href
 					? 'bg-dp-highlighter-ma-green text-white'
 					: 'bg-dp-highlighter-ma-green text-dp-softer-ma-cream',
 			)}
@@ -49,7 +49,7 @@ const SolidButton = (props: SolidButtonProps) => {
 			className={twMerge(
 				'font-Croissant rounded-dp-20 hover:text-dp-softer-ma-cream hover:bg-dp-ma-red group border-dp-highlighter-ma-green hover:border-dp-highlighter-ma-green relative flex items-center border-2 px-4 py-3.5 font-bold uppercase shadow-2xl transition-all md:px-9 md:py-4 lg:text-sm',
 				classes,
-				isTopBar && pathName === `/${href}`
+				isTopBar && pathName === href
 					? 'bg-dp-highlighter-ma-green text-white'
 					: 'bg-dp-text-dp-softer-ma-cream text-dp-dark',
 			)}

@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
 				protocol: 'https',
 				hostname: 'thedavid.digitalpotter.io',
 			},
+			{
+				protocol: 'https',
+				hostname: 'cf.digitalpotter.io',
+			},
 		],
 		qualities: [25, 50, 75, 100],
 		minimumCacheTTL: 86400, // Cache optimized images for 24 hours

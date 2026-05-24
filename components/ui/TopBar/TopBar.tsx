@@ -3,23 +3,57 @@ import { twMerge } from 'tailwind-merge';
 
 import { PhoneIcon } from '@/components/icons';
 import MilAmoresMainLogo from '@/components/vectors/MilAmoresMainLogo';
-import { getMenuPages } from '@/helpers/api-connections/pagesData';
-import type { NavProps } from '@/types/pages';
+import { resolveMenuItemHref } from '@/helpers/cms/links';
+import type {
+	NavigationResponse,
+	StoreSettingsRecord,
+} from '@/helpers/cms/types';
 
 import SolidButton from '../SolidButton';
 import Indicator from './Indicator';
-import MobileNav from './MobileNav';
+import MobileNav, { type RenderedNavItem } from './MobileNav';
 
-const TopBar = async () => {
-	const menuData: NavProps[] = await getMenuPages();
+interface TopBarProps {
+	headerNav: NavigationResponse;
+	siteStructure?: StoreSettingsRecord['siteStructure'];
+}
 
-	const featuredItem = menuData.find((el) => el.label.includes('Menu')) || {
-		label: 'Menu',
-		link: '/our-menu',
-	};
-	const menuItems = menuData.filter(
-		(el) => !el.label.includes(featuredItem?.label as string),
-	);
+const TopBar = (props: TopBarProps) => {
+	const { headerNav, siteStructure } = props;
+
+	const menusBySlug = new Map(headerNav.menus.map((m) => [m.slug, m]));
+	const leftMenu = menusBySlug.get('left-menu') ?? headerNav.menus[0];
+	const rightMenu =
+		menusBySlug.get('right-menu') ??
+		headerNav.menus.find((m) => m._id !== leftMenu?._id);
+
+	const leftItems: RenderedNavItem[] = (leftMenu?.items ?? []).map((item) => {
+		const href = resolveMenuItemHref(item, siteStructure);
+		return {
+			id: item._id,
+			label: item.label,
+			href,
+			isHome: href === '/',
+		};
+	});
+
+	const ctaItem = rightMenu?.items?.[0];
+	const ctaHref = ctaItem
+		? resolveMenuItemHref(ctaItem, siteStructure)
+		: '/our-menu';
+	const ctaLabel = ctaItem?.label ?? 'Our Menu';
+
+	const mobileItems: RenderedNavItem[] = ctaItem
+		? [
+				...leftItems,
+				{
+					id: ctaItem._id,
+					label: ctaLabel,
+					href: ctaHref,
+					isHome: ctaHref === '/',
+				},
+			]
+		: leftItems;
 
 	return (
 		<header className="bg-dp-softer-ma-cream z-50">
@@ -44,22 +78,19 @@ const TopBar = async () => {
 					</div>
 					<nav className="dp-box-design mr-7 hidden p-1 xl:block">
 						<ul className="flex flex-row gap-1">
-							{menuItems.map((page: NavProps) => (
+							{leftItems.map((item) => (
 								<li
-									key={page._id}
+									key={item.id}
 									className="font-Croissant relative text-2xl font-semibold"
 								>
 									<Link
-										href={page.label === 'Home' ? '/' : page.link}
+										href={item.href}
 										className={twMerge(
 											'text-dp-ma-orange hover:text-dp-ma-red block rounded-2xl bg-black/0 px-5 py-2.5 transition-all hover:bg-black/5',
 										)}
 									>
-										{page.label}
-										<Indicator
-											itemPath={page.link}
-											isHome={page.label === 'Home' ? true : false}
-										/>
+										{item.label}
+										<Indicator itemHref={item.href} isHome={item.isHome} />
 									</Link>
 								</li>
 							))}
@@ -67,14 +98,14 @@ const TopBar = async () => {
 					</nav>
 					<div className="flex flex-row items-center gap-2 md:gap-4 xl:gap-8">
 						<SolidButton
-							href={featuredItem.link}
-							label={featuredItem.label}
+							href={ctaHref}
+							label={ctaLabel}
 							classes="order-2 xl:order-1"
 							isTopBar={true}
 							alwaysIcon={true}
 						/>
 						<div className="order-1 block xl:hidden">
-							{menuData.length > 0 && <MobileNav navItems={menuData} />}
+							{mobileItems.length > 0 && <MobileNav navItems={mobileItems} />}
 						</div>
 					</div>
 				</div>

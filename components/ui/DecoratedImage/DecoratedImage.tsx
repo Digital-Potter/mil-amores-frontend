@@ -89,7 +89,7 @@ export const DecoratedImage = (props: DecoratedImageProps) => {
 				</div>
 			)}
 			<Image
-				src={`${process.env.NEXT_PUBLIC_CMS}/${imageSrc}`}
+				src={imageSrc}
 				alt={imageData.alt}
 				width={imageData.width}
 				height={imageData.height}

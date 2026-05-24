@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
-import { getMenuPages } from '@/helpers/api-connections/pagesData';
+import type { NavigationResponse } from '@/helpers/cms/types';
 
 import TopBar from './TopBar';
 
-jest.mock('@/helpers/api-connections/pagesData');
 jest.mock('next/link', () => {
 	const MockLink = ({
 		children,
@@ -44,42 +43,67 @@ jest.mock('./Indicator', () => {
 	return MockIndicator;
 });
 jest.mock('./MobileNav', () => {
-	const MockMobileNav = ({ navItems }: { navItems: any[] }) => {
+	const MockMobileNav = ({ navItems }: { navItems: { id: string }[] }) => {
 		return <div data-testid="mobile-nav">{navItems.length} items</div>;
 	};
 	MockMobileNav.displayName = 'MockMobileNav';
 	return MockMobileNav;
 });
 
-const mockMenuData = [
-	{ _id: '1', label: 'Home', link: '/' },
-	{ _id: '2', label: 'About', link: '/about' },
-	{ _id: '3', label: 'Menu', link: '/menu' },
-];
+const navItem = (overrides: { id: string; label: string; slug: string }) => ({
+	_id: overrides.id,
+	label: overrides.label,
+	type: 'page' as const,
+	openInNewTab: false,
+	order: 0,
+	resolved: { slug: overrides.slug, title: overrides.label },
+	children: [],
+});
+
+const mockNav: NavigationResponse = {
+	success: true,
+	count: 2,
+	menus: [
+		{
+			_id: 'left',
+			name: 'left',
+			slug: 'left-menu',
+			location: 'header',
+			items: [
+				navItem({ id: '1', label: 'Home', slug: 'home' }),
+				navItem({ id: '2', label: 'About', slug: 'about' }),
+			],
+		},
+		{
+			_id: 'right',
+			name: 'right',
+			slug: 'right-menu',
+			location: 'header',
+			items: [navItem({ id: '3', label: 'Menu', slug: 'our-menu' })],
+		},
+	],
+};
 
 describe('TopBar', () => {
-	beforeEach(() => {
-		(getMenuPages as jest.Mock).mockResolvedValue(mockMenuData);
-	});
-
-	it('renders navigation items', async () => {
-		const component = await TopBar();
-		render(component);
+	it('renders left-menu items', () => {
+		render(
+			<TopBar headerNav={mockNav} siteStructure={{ homepageSlug: 'home' }} />,
+		);
 		expect(screen.getByText('Home')).toBeInTheDocument();
 		expect(screen.getByText('About')).toBeInTheDocument();
-		expect(screen.getByText('Menu')).toBeInTheDocument();
 	});
 
-	it('renders SolidButton with correct props', async () => {
-		const component = await TopBar();
-		render(component);
-		const button = screen.getByText('Menu');
-		expect(button).toBeInTheDocument();
+	it('renders the right-menu CTA via SolidButton', () => {
+		render(
+			<TopBar headerNav={mockNav} siteStructure={{ homepageSlug: 'home' }} />,
+		);
+		expect(screen.getByTestId('solid-button')).toHaveTextContent('Menu');
 	});
 
-	it('renders MobileNav component', async () => {
-		const component = await TopBar();
-		render(component);
-		expect(screen.getByTestId('mobile-nav')).toBeInTheDocument();
+	it('renders MobileNav with all items including the CTA', () => {
+		render(
+			<TopBar headerNav={mockNav} siteStructure={{ homepageSlug: 'home' }} />,
+		);
+		expect(screen.getByTestId('mobile-nav')).toHaveTextContent('3 items');
 	});
 });

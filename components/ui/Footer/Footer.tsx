@@ -1,11 +1,23 @@
 import Link from 'next/link';
 
 import MilAmoresTextLogo from '@/components/vectors/MilAmoresTextLogo';
-import { getMenuPages } from '@/helpers/api-connections/pagesData';
-import { NavProps } from '@/types/pages';
+import { resolveMenuItemHref } from '@/helpers/cms/links';
+import type {
+	NavigationResponse,
+	StoreSettingsRecord,
+} from '@/helpers/cms/types';
 
-const Footer = async () => {
-	const menuData: NavProps[] = await getMenuPages();
+interface FooterProps {
+	footerNav: NavigationResponse;
+	siteStructure?: StoreSettingsRecord['siteStructure'];
+}
+
+const Footer = (props: FooterProps) => {
+	const { footerNav, siteStructure } = props;
+
+	const menusBySlug = new Map(footerNav.menus.map((m) => [m.slug, m]));
+	const footerMenu = menusBySlug.get('footer-menu') ?? footerNav.menus[0];
+	const items = footerMenu?.items ?? [];
 
 	return (
 		<footer className="dp-container grid grid-cols-6 gap-9 py-14 lg:grid-cols-12 lg:py-16">
@@ -15,13 +27,15 @@ const Footer = async () => {
 			<div className="col-span-6 flex flex-col items-center justify-center">
 				<nav className="bg-dp-softer-ma-cream mx-auto h-max w-max rounded-4xl py-2">
 					<ul className="flex flex-row items-center justify-center gap-1 px-2">
-						{menuData.map((el) => (
-							<li key={el._id}>
+						{items.map((item) => (
+							<li key={item._id}>
 								<Link
-									href={el.link}
+									href={resolveMenuItemHref(item, siteStructure)}
+									target={item.openInNewTab ? '_blank' : undefined}
+									rel={item.openInNewTab ? 'noreferrer' : undefined}
 									className="font-Croissant hover:bg-dp-highlighter-ma-green/10 block h-full rounded-4xl bg-amber-50/0 px-4 py-3 text-base transition-all lg:text-xl"
 								>
-									{el.label}
+									{item.label}
 								</Link>
 							</li>
 						))}

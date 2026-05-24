@@ -4,12 +4,17 @@ import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import type { NavProps } from '@/types/pages';
-
 import mobileNavStyles from './nav.module.css';
 
+export interface RenderedNavItem {
+	id: string;
+	label: string;
+	href: string;
+	isHome: boolean;
+}
+
 interface MobileNavProps {
-	navItems: NavProps[];
+	navItems: RenderedNavItem[];
 }
 
 const MobileNav = ({ navItems }: MobileNavProps) => {
@@ -59,9 +64,9 @@ const MobileNav = ({ navItems }: MobileNavProps) => {
 				<nav role="navigation" aria-label="Mobile navigation">
 					<ul className={mobileNavStyles.mobileNavList}>
 						{navItems.map((navItem) => (
-							<li key={navItem._id} className={mobileNavStyles.navMobileItem}>
+							<li key={navItem.id} className={mobileNavStyles.navMobileItem}>
 								<Link
-									href={navItem.link}
+									href={navItem.href}
 									onClick={handleClose}
 									className="font-Croissant w-full rounded-xl bg-transparent py-2 text-base font-bold uppercase transition-all duration-300 hover:bg-black/5 hover:text-black/80"
 								>
