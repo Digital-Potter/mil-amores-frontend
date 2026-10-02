@@ -83,9 +83,11 @@ const CarouselSetup = ({ specials }: CarouselSetupProps) => {
 										<DecoratedImage
 											imageSrc={`${special.featuredImage.fullSize}`}
 											imageData={{
-												alt: createImageAlt(special.featuredImage.fullSize),
-												width: 500,
-												height: 448,
+												alt:
+													special.featuredImage.alt ||
+													createImageAlt(special.featuredImage.fullSize),
+												width: special.featuredImage.width ?? 500,
+												height: special.featuredImage.height ?? 448,
 											}}
 											decorationConfig={imageDecorationConfig}
 											className="top-10 -mb-10 h-80 lg:-mt-32 lg:mb-0 xl:-top-10 xl:h-112"

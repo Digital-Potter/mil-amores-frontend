@@ -8,12 +8,12 @@ import type { PageTemplateProps } from './registry';
 
 export default function HomeTemplate({ page }: PageTemplateProps) {
 	const featuredimg = page.featuredImage?.url ?? '';
-	const featuredImageAlt = createImageAlt(featuredimg);
 
+	// Prefer the CMS Media alt/dimensions; fall back to the legacy guesses.
 	const featuredImageData = {
-		alt: featuredImageAlt,
-		width: 850,
-		height: 600,
+		alt: page.featuredImage?.alt || createImageAlt(featuredimg),
+		width: page.featuredImage?.width ?? 850,
+		height: page.featuredImage?.height ?? 600,
 	};
 
 	const featuredImageDecorationConfig = {
@@ -52,6 +52,8 @@ export default function HomeTemplate({ page }: PageTemplateProps) {
 							imageData={featuredImageData}
 							decorationConfig={featuredImageDecorationConfig}
 							className="h-full min-h-max w-full xl:max-h-150 xl:min-h-80"
+							preload
+							sizes="(min-width: 1280px) 46vw, 92vw"
 						/>
 					</div>
 				)}

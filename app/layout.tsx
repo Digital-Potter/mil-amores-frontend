@@ -2,7 +2,10 @@ import './globals.css';
 
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
+import { Suspense } from 'react';
 
+import TrackPageVisit from '@/components/analytics/TrackPageVisit';
+import { getCmsBaseUrl, TENANT_SLUG } from '@/helpers/cms/client';
 import { fetchStoreSettingsOrNull } from '@/helpers/cms/settings';
 import { primaryFont, secondaryFont } from '@/helpers/FontSettings';
 import {
@@ -150,6 +153,9 @@ export default async function RootLayout({
 				) : null}
 				{children}
 				{gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+				<Suspense fallback={null}>
+					<TrackPageVisit apiUrl={getCmsBaseUrl()} tenantId={TENANT_SLUG} />
+				</Suspense>
 			</body>
 		</html>
 	);

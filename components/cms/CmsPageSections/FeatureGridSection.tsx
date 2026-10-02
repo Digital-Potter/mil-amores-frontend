@@ -24,11 +24,32 @@ type ExtendedColumn = CmsBlockColumn & {
 	link?: string;
 };
 
-function columnImageUrl(img: CmsBlockColumn['image']): string | null {
-	if (!img) return null;
-	if (typeof img === 'string') return img;
-	return img.url ?? null;
+interface ColumnMedia {
+	url: string;
+	alt?: string;
 }
+
+/**
+ * The CMS sends a column image either as a bare URL string (legacy migrated
+ * content) or as a populated Media object (what the admin column picker
+ * saves today: url, alt, width, height). Normalise both to {url, alt}.
+ */
+function columnMedia(img: CmsBlockColumn['image']): ColumnMedia | null {
+	if (!img) return null;
+	if (typeof img === 'string') return img ? { url: img } : null;
+	if (!img.url) return null;
+	return { url: img.url, alt: img.alt };
+}
+
+function columnImageUrl(img: CmsBlockColumn['image']): string | null {
+	return columnMedia(img)?.url ?? null;
+}
+
+// Tiles live in `.dp-container` (w-11/12, max-w-425) on a 6/12-column grid:
+// tile 1 spans half the row on lg, tiles 2-3 a quarter; all are full width
+// below lg. Next needs this hint whenever `fill` is used.
+const TILE_SIZES_WIDE = '(min-width: 1024px) 46vw, 92vw';
+const TILE_SIZES_NARROW = '(min-width: 1024px) 23vw, 92vw';
 
 /**
  * Two visual variants share one section type so the admin can use a
@@ -130,17 +151,17 @@ function ImageTileGrid({
 			<div className="grid grid-cols-6 items-center gap-9 lg:grid-cols-12">
 				{tileOne && (
 					<div className="col-span-6 h-96 lg:h-137.5">
-						<Tile column={tileOne} />
+						<Tile column={tileOne} sizes={TILE_SIZES_WIDE} />
 					</div>
 				)}
 				{tileTwo && (
 					<div className="col-span-6 h-80 lg:col-span-3 lg:h-120">
-						<Tile column={tileTwo} />
+						<Tile column={tileTwo} sizes={TILE_SIZES_NARROW} />
 					</div>
 				)}
 				{tileThree && (
 					<div className="col-span-6 h-80 lg:col-span-3 lg:h-120">
-						<Tile column={tileThree} />
+						<Tile column={tileThree} sizes={TILE_SIZES_NARROW} />
 					</div>
 				)}
 			</div>
@@ -148,9 +169,9 @@ function ImageTileGrid({
 	);
 }
 
-function Tile({ column }: { column: ExtendedColumn }) {
+function Tile({ column, sizes }: { column: ExtendedColumn; sizes: string }) {
 	const href = column.link || '/our-menu';
-	const imageUrl = columnImageUrl(column.image);
+	const media = columnMedia(column.image);
 	const overlay = column.subtitle || column.title || '';
 
 	return (
@@ -166,11 +187,12 @@ function Tile({ column }: { column: ExtendedColumn }) {
 				)}
 			</div>
 			<div className="absolute bottom-0 z-10 h-64 w-full -bg-linear-180 from-transparent to-black/80" />
-			{imageUrl && (
+			{media && (
 				<Image
-					src={imageUrl}
-					alt={overlay}
+					src={media.url}
+					alt={media.alt || overlay}
 					fill
+					sizes={sizes}
 					className="z-0 object-cover object-center"
 				/>
 			)}

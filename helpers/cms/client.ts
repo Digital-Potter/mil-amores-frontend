@@ -1,4 +1,12 @@
-const TENANT_SLUG = process.env.TENANT_SLUG ?? 'mil-amores';
+/** Tenant slug sent as `x-tenant-id` (server-only env; also used by the visit tracker). */
+export const TENANT_SLUG = process.env.TENANT_SLUG ?? 'mil-amores';
+
+/**
+ * Non-throwing variant of `baseUrl()` for optional browser-side features
+ * (visit tracking) that must never crash a render when the env is missing.
+ */
+export const getCmsBaseUrl = () =>
+	(process.env.NEXT_PUBLIC_API ?? '').replace(/\/$/, '');
 
 const baseUrl = () => {
 	const v = process.env.NEXT_PUBLIC_API;

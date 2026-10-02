@@ -12,6 +12,8 @@ interface MediaLike {
 	_id?: string;
 	url?: string;
 	alt?: string;
+	width?: number;
+	height?: number;
 }
 
 interface NewMenuCategory {
@@ -63,6 +65,9 @@ function toLegacyImage(m: MediaLike | undefined): allImages {
 	return {
 		fullSize: url,
 		othersizes: { tablet: url, mobile: url },
+		alt: m?.alt || undefined,
+		width: m?.width,
+		height: m?.height,
 	};
 }
 

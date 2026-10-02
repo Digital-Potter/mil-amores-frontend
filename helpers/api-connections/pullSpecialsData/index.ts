@@ -9,6 +9,9 @@ const TENANT_SLUG = process.env.TENANT_SLUG ?? 'mil-amores';
 
 interface MediaLike {
 	url?: string;
+	alt?: string;
+	width?: number;
+	height?: number;
 }
 
 interface NewSpecialItem {
@@ -57,6 +60,9 @@ function toLegacyImage(m: MediaLike | undefined): allImages {
 	return {
 		fullSize: url,
 		othersizes: { tablet: url, mobile: url },
+		alt: m?.alt || undefined,
+		width: m?.width,
+		height: m?.height,
 	};
 }
 

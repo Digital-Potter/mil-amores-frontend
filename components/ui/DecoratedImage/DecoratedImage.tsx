@@ -21,10 +21,15 @@ interface DecoratedImageProps {
 		sizeClassesBr?: string;
 	};
 	className?: string;
+	/** Preload above-the-fold (LCP) images. */
+	preload?: boolean;
+	/** Responsive `sizes` hint for next/image. */
+	sizes?: string;
 }
 
 export const DecoratedImage = (props: DecoratedImageProps) => {
-	const { imageSrc, imageData, decorationConfig, className } = props;
+	const { imageSrc, imageData, decorationConfig, className, preload, sizes } =
+		props;
 
 	return (
 		<div className={twMerge('relative', className)}>
@@ -93,6 +98,8 @@ export const DecoratedImage = (props: DecoratedImageProps) => {
 				alt={imageData.alt}
 				width={imageData.width}
 				height={imageData.height}
+				preload={preload}
+				sizes={sizes}
 				className="h-full w-full rounded-4xl object-cover"
 			/>
 		</div>
