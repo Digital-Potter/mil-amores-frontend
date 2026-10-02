@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import OutlinedButton from '@/components/ui/OutlinedButton';
 import SolidButton from '@/components/ui/SolidButton';
+import { safeHref } from '@/helpers/cms/safeHref';
 import type { CmsBlockColumn, CmsPageSection } from '@/helpers/pullCmsPage';
 
 interface TextSectionProps {
@@ -38,7 +39,13 @@ const gridColsClass: Record<number, string> = {
  */
 export default function TextSection({ section }: TextSectionProps) {
 	const columns = section.content?.columns ?? [];
-	const buttons = section.content?.buttons ?? [];
+	// The CMS button URL is free text, so validate it before it can reach
+	// `<a href>`. A destination `safeHref` rejects is dropped rather than
+	// rendered dead.
+	const buttons = (section.content?.buttons ?? []).flatMap((btn) => {
+		const href = safeHref(btn.url);
+		return href ? [{ ...btn, url: href }] : [];
+	});
 	const colCount = columns.length || section.settings?.columns || 1;
 	const paddingTop = section.settings?.paddingTop ?? 'medium';
 	const paddingBottom = section.settings?.paddingBottom ?? 'medium';

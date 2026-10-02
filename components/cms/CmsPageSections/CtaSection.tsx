@@ -1,5 +1,6 @@
 import SolidButton from '@/components/ui/SolidButton';
 import Wiggles from '@/components/vectors/Wiggles';
+import { safeHref } from '@/helpers/cms/safeHref';
 import type { CmsPageSection } from '@/helpers/pullCmsPage';
 
 interface CtaSectionProps {
@@ -23,6 +24,8 @@ export default function CtaSection({ section }: CtaSectionProps) {
 	const content = (section.content ?? {}) as CtaContent;
 	const body = content.body ?? '';
 	const button = content.buttons?.[0];
+	// The CMS button URL is free text; validate before it reaches `<a href>`.
+	const buttonHref = safeHref(button?.url);
 
 	if (!title && !subtitle && !body && !button) return null;
 
@@ -46,10 +49,10 @@ export default function CtaSection({ section }: CtaSectionProps) {
 								dangerouslySetInnerHTML={{ __html: body }}
 							/>
 						)}
-						{button?.label && button?.url && (
+						{button?.label && buttonHref && (
 							<SolidButton
 								label={button.label}
-								href={button.url}
+								href={buttonHref}
 								classes="bg-white border-white [&>span]:text-dp-highlighter-ma-green hover:bg-dp-softer-ma-cream hover:border-dp-softer-ma-cream hover:[&>svg]:fill-dp-highlighter-ma-green!"
 							/>
 						)}
