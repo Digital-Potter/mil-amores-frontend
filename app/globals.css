@@ -80,3 +80,8 @@
 .dp-container {
 	@apply mx-auto w-11/12 max-w-425;
 }
+
+/* Site notice: hidden before paint when the visitor already closed it. */
+html[data-notice-dismissed] [data-site-notice] {
+	display: none;
+}

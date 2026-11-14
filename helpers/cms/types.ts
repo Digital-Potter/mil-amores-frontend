@@ -76,6 +76,26 @@ export interface StoreSettingsRecord {
 		googleSiteVerification?: string;
 		bingSiteVerification?: string;
 	};
+	/** Present only when the owner has the site notice on. */
+	noticePopup?: NoticePopupPayload;
+}
+
+export type NoticeItemType =
+	| 'page'
+	| 'product'
+	| 'course'
+	| 'blogPost'
+	| 'productCategory'
+	| 'blogCategory';
+
+export interface NoticePopupPayload {
+	/** Strict-sanitized HTML from the API. */
+	content: string;
+	showOn: {
+		everywhere: boolean;
+		homepage: boolean;
+		items: { type: NoticeItemType; slug: string; path: string }[];
+	};
 }
 
 export interface StoreSettingsResponse {

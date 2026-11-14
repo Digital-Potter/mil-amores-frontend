@@ -1,4 +1,5 @@
 import Footer from '@/components/ui/Footer/Footer';
+import SiteNotice from '@/components/ui/SiteNotice';
 import TopBar from '@/components/ui/TopBar/TopBar';
 import {
 	fetchNavigationOrEmpty,
@@ -19,6 +20,7 @@ export default async function FullSiteLayout({
 
 	return (
 		<>
+			<SiteNotice settings={settingsData?.settings ?? null} />
 			<TopBar headerNav={headerNav} siteStructure={siteStructure} />
 			<div
 				className="flex w-screen flex-col overflow-x-clip"

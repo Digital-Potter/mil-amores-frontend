@@ -8,6 +8,7 @@ import TrackPageVisit from '@/components/analytics/TrackPageVisit';
 import { getCmsBaseUrl, TENANT_SLUG } from '@/helpers/cms/client';
 import { fetchStoreSettingsOrNull } from '@/helpers/cms/settings';
 import { primaryFont, secondaryFont } from '@/helpers/FontSettings';
+import { parseNotice } from '@/helpers/notice/notice';
 import {
 	JsonLd,
 	organizationSchema,
@@ -140,8 +141,11 @@ export default async function RootLayout({
 	const gaId =
 		ga?.trackingEnabled && ga.measurementId ? ga.measurementId : null;
 
+	// The notice's inline script stamps <html> before hydration.
+	const noticeOn = parseNotice(settings?.noticePopup) !== null;
+
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning={noticeOn || undefined}>
 			<body
 				className={`${primaryFont.variable} ${secondaryFont.variable} antialiased`}
 			>
