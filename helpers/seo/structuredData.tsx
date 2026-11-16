@@ -93,9 +93,19 @@ export function websiteSchema(
 
 type JsonLdInput = object | string | null | undefined;
 
-export function JsonLd({ data }: { data: JsonLdInput }) {
-	if (data === null || data === undefined) return null;
+/**
+ * The text of a JSON-LD script tag. Every `<` becomes `\u003c`, which JSON
+ * parsers read back as `<`, so no value (a title, an owner's custom JSON-LD)
+ * can close the tag with `</script>`.
+ */
+export function jsonLdHtml(data: JsonLdInput): string {
+	if (data === null || data === undefined) return '';
 	const html = typeof data === 'string' ? data : JSON.stringify(data);
+	return (html ?? '').replace(/</g, '\\u003c');
+}
+
+export function JsonLd({ data }: { data: JsonLdInput }) {
+	const html = jsonLdHtml(data);
 	if (!html || html.trim().length === 0) return null;
 	return (
 		<script
